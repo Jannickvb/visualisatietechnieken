@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-Vis_Technieken_Week_3.VC.VC.opendb
-Vis_Technieken_Week_3.VC.db
-Debug/
-=======
 # Prerequisites
 *.d
 
@@ -37,4 +32,4 @@ Debug/
 *.app
 Vis_Technieken_Week_3.VC.VC.opendb
 Vis_Technieken_Week_3.VC.db
->>>>>>> parent of b4e4e35... remove gitignore want slim
+Debug/
