@@ -10,11 +10,23 @@
 #include <math.h>
 
 #include <map>
+#include <string>
 #include <vector>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #pragma comment(lib, "glew32.lib")
 
+
+struct ShaderProgram {
+	std::string vertexShader;
+	std::string fragmentShader;
+
+	ShaderProgram(std::string vs, std::string fs) {
+		vertexShader = vs;
+		fragmentShader = fs;
+	}
+
+};
 
 class Shader
 {
@@ -121,10 +133,11 @@ GLuint textureId;
 Shader* normalShader;
 Shader* postShader;
 
+std::vector<ShaderProgram> basicShaders;
+std::vector<ShaderProgram> postProcessingShaders;
+
 GLuint fboTextureId;
 GLuint fboId;
-
-
 
 void init()
 {
@@ -133,8 +146,14 @@ void init()
 	glEnable(GL_BLEND);
 	glClearColor(0, 0, 0, 1);
 
-	normalShader = loadShader("simple.vs", "simple.fs");
-	postShader = loadShader("postprocess.vs", "postprocess.fs");
+	basicShaders.push_back(ShaderProgram("simple.vs", "simple.fs"));
+	postProcessingShaders.push_back(ShaderProgram("postprocess.vs", "postprocess.fs"));
+
+	//normie shaders
+	normalShader = loadShader(basicShaders.at(0).vertexShader, basicShaders.at(0).fragmentShader);
+
+	//dank shaders
+	postShader = loadShader(postProcessingShaders.at(0).vertexShader, postProcessingShaders.at(0).fragmentShader);
 	
 	glEnableVertexAttribArray(0);							// we gebruiken vertex attribute 0
 
@@ -346,6 +365,15 @@ void keyboard(unsigned char key, int x, int y)
 {
 	if (key == VK_ESCAPE)
 		glutLeaveMainLoop();
+	if (key == VK_UP)
+		;
+	if (key == VK_DOWN)
+		;
+	if (key == VK_LEFT)
+		;
+	if (key == VK_RIGHT)
+		;
+
 }
 
 void update()
