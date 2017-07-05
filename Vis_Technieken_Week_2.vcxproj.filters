@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{6b80f125-b52a-4b85-85ee-41cbab1d8d8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -26,16 +29,36 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="simple.vs" />
-    <None Include="simple.fs" />
-    <None Include="vertexanim.vs" />
-    <None Include="vertexanim.fs" />
-    <None Include="texture.vs" />
-    <None Include="texture.fs" />
-    <None Include="textureanim.fs" />
-    <None Include="textureanim.vs" />
-    <None Include="multitex.fs" />
-    <None Include="multitex.vs" />
+    <None Include="multitex.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="multitex.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="simple.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="simple.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="texture.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="texture.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="textureanim.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="textureanim.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="vertexanim.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="vertexanim.vs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ObjModel.h">

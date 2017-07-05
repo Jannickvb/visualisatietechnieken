@@ -190,11 +190,11 @@ void keyboard(unsigned char key, int x, int y)
 {
 	if (key == VK_ESCAPE)
 		glutLeaveMainLoop();
-	if (key == '[')
+	if (key == 'a')
 		currentShader = (currentShader + shaders.size() - 1) % shaders.size();
-	if (key == ']')
+	if (key == 'd')
 		currentShader = (currentShader + 1) % shaders.size();
-	if (key == ',' || key == '.')
+	if (key == 'w' || key == 's')
 		activeModel = (activeModel + 1) % models.size();
 }
 
