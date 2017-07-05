@@ -133,6 +133,8 @@ GLuint textureId;
 Shader* normalShader;
 Shader* postShader;
 
+int currentBasicShader;
+int currentPostProcessingShader;
 std::vector<ShaderProgram> basicShaders;
 std::vector<ShaderProgram> postProcessingShaders;
 
@@ -146,14 +148,19 @@ void init()
 	glEnable(GL_BLEND);
 	glClearColor(0, 0, 0, 1);
 
-	basicShaders.push_back(ShaderProgram("simple.vs", "simple.fs"));
-	postProcessingShaders.push_back(ShaderProgram("postprocess.vs", "postprocess.fs"));
 
 	//normie shaders
-	normalShader = loadShader(basicShaders.at(0).vertexShader, basicShaders.at(0).fragmentShader);
+	currentBasicShader = 0;
+	basicShaders.push_back(ShaderProgram("simple.vs", "simple.fs"));
 
 	//dank shaders
-	postShader = loadShader(postProcessingShaders.at(0).vertexShader, postProcessingShaders.at(0).fragmentShader);
+	currentPostProcessingShader = 0;
+	postProcessingShaders.push_back(ShaderProgram("postprocess.vs", "postprocess.fs"));
+
+	normalShader = loadShader(basicShaders.at(currentBasicShader).vertexShader,
+		basicShaders.at(currentBasicShader).fragmentShader);
+	postShader = loadShader(postProcessingShaders.at(currentPostProcessingShader).vertexShader,
+		postProcessingShaders.at(currentPostProcessingShader).fragmentShader);
 	
 	glEnableVertexAttribArray(0);							// we gebruiken vertex attribute 0
 
@@ -365,14 +372,17 @@ void keyboard(unsigned char key, int x, int y)
 {
 	if (key == VK_ESCAPE)
 		glutLeaveMainLoop();
-	if (key == VK_UP)
-		;
-	if (key == VK_DOWN)
-		;
-	if (key == VK_LEFT)
-		;
-	if (key == VK_RIGHT)
-		;
+	if (key == 'a')
+		currentBasicShader = (currentBasicShader + basicShaders.size() - 1) % basicShaders.size();
+	if (key == 'd')
+		currentBasicShader = (currentBasicShader + 1) % basicShaders.size();
+	if (key == 'w' || key == 's')
+		currentPostProcessingShader = (currentPostProcessingShader + 1) % postProcessingShaders.size();
+
+	normalShader = loadShader(basicShaders.at(currentBasicShader).vertexShader,
+		basicShaders.at(currentBasicShader).fragmentShader);
+	postShader = loadShader(postProcessingShaders.at(currentPostProcessingShader).vertexShader,
+		postProcessingShaders.at(currentPostProcessingShader).fragmentShader);
 
 }
 
@@ -396,7 +406,7 @@ void update()
 int main(int argc, char* argv[])
 {
 	glutInit(&argc, argv);
-	glutInitWindowSize(1900, 1000);
+	glutInitWindowSize(1300, 750);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
 	glutCreateWindow("Visualisatietechnieken");
 
