@@ -1,14 +1,18 @@
-uniform sampler2D s_texture;
-varying vec2 texCoord;
-varying vec3 color;
 varying vec3 normal;
 
 void main()
 {
-    float f = dot(normal, vec3(0,0,1));
+	vec3 lightDirection = normalize(vec3(1,1,1));
+	vec3 viewDirection = vec3(0,0,1);
+	float shininess = 10.0;
 
-    float fogFac =  pow(clamp(1.0 - (gl_FragCoord.z / gl_FragCoord.w) / 1500.0,0,1),4.0);
-    vec4 fogColor = vec4(0, 0, 0, 1);
+	float ambient = 0.2;
+	float diffuse = 0.8 * dot(normal, lightDirection);
 
-	gl_FragColor = mix(fogColor, clamp((0.5 + f) * vec4(color,1),0,1)*texture2D(s_texture, texCoord), fogFac);
+	vec3 r = reflect(-lightDirection, normal);
+
+	float specular = pow(max(0.0, dot(r, viewDirection)), shininess);
+
+	float factor = ambient + diffuse + specular;
+	gl_FragColor = vec4(factor,factor,factor,1.0);
 }
