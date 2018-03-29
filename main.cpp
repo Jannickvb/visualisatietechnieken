@@ -121,14 +121,14 @@ void init()
 	shaders.push_back(loadShader("vertexanim.vs", "vertexanim.fs"));
 
 	models.push_back(new ObjModel("models/ship/shipA_OBJ.obj"));
-	distances.push_back(100);
+	distances.push_back(50);
 	models.push_back(new ObjModel("models/car/honda_jazz.obj"));
-	distances.push_back(200);
+	distances.push_back(150);
 	//	model = new ObjModel("models/bloemetje/PrimroseP.obj");
 	models.push_back(new ObjModel("models/normalstuff/normaltest.obj"));
-	distances.push_back(3);
+	distances.push_back(2);
 	models.push_back(new ObjModel("models/normalstuff/normaltest2.obj"));
-	distances.push_back(3);
+	distances.push_back(2);
 
 
 	glEnableVertexAttribArray(0);							// positie
@@ -156,7 +156,7 @@ void display()
 
 	Shader* shader = shaders[currentShader];
 
-	glm::mat4 projection = glm::perspective(70.0f, screenSize.x / (float)screenSize.y, 0.01f, 300.0f);		//begin met een perspective matrix
+	glm::mat4 projection = glm::perspective(70.0f, screenSize.x / (float)screenSize.y, 0.01f, 200.0f);		//begin met een perspective matrix
 	glm::mat4 view = glm::lookAt(glm::vec3(0, 0, distances[activeModel]), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));					//vermenigvuldig met een lookat
 	glm::mat4 model = glm::translate(glm::mat4(), glm::vec3(0, 0, -1));													//of verplaats de camera gewoon naar achter
 	model = glm::rotate(model, rotation, glm::vec3(0, 1, 0));											//roteer het object een beetje
