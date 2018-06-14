@@ -30,7 +30,9 @@
 *.exe
 *.out
 *.app
+.vs/
 Vis_Technieken_Week_3.VC.VC.opendb
 Vis_Technieken_Week_3.VC.db
 Debug/
+Release/
 Vis_Technieken_Week_2.VC.db
